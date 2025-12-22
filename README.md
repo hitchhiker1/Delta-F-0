@@ -152,6 +152,92 @@ Das ist keine Weltformel. Es ist ein **Compiler für Gültigkeit.**
 
 ---
 
+ann:
+
+⟨
+𝑣
+⟩
+𝑐
+=
+∫
+0
+1
+𝑥
+  
+𝑥
+𝑛
+ 
+𝑑
+𝑥
+∫
+0
+1
+𝑥
+𝑛
+ 
+𝑑
+𝑥
+=
+𝑛
++
+1
+𝑛
++
+2
+.
+c
+⟨v⟩
+	​
+
+=
+∫
+0
+1
+	​
+
+x
+n
+dx
+∫
+0
+1
+	​
+
+xx
+n
+dx
+	​
+
+=
+n+2
+n+1
+	​
+
+.
+
+Einsetzen der Zahl
+
+Mit 𝑛 ≈ −0.441 ergibt sich
+
+⟨𝑣⟩ 𝑐 ≈ 0.358524
+
+Mini-Check (damit klar ist, dass es rechnerisch passt)
+𝑛  +  1 / 𝑛 + 2 = 0.559 / 1.559 ≈ 0.358524
+  
+n=2,718281828…−12−2,718281828…​≈−0,441
+r=0.358524
+
+folgt exakt:
+
+2𝑟  − 1 = −0.282952
+1  − 𝑟 = 0.641476
+
+damit
+𝑛 = −0.282952 / 0.641476  ≈ −0.441
+
+
+
+ 
 ## 📡 Aufforderung an Physiker
 Finde eine andere gültige Kombination - um es zu brechen. 
 Wenn dein Modell freie Parameter erlaubt, ist es unvollständig.
