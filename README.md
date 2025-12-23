@@ -263,6 +263,33 @@ Walkthrough / Code: siehe Notebook/Script (muss die Residuen reproduzierbar ausw
 
 ---
 
+## Übergang zu Ebene 2 (klar abgegrenzt)
+
+**Ebene 1 ist hiermit logisch abgeschlossen („locked“).**
+
+Alles Folgende gehört **nicht** mehr zur Closure‑Definition, sondern zu **Ebene 2**. Ebene 2 darf **keine** neuen Freiheitsgrade in Ebene 1 einführen.
+
+**In Ebene 2 dürfen sich nur ändern:**
+
+* Zustandsgrößen wie (T, u, H) **entlang eines Skalen‑ oder Zeitpfads**,
+* Darstellungen der Drift (z.B. Profile, Flüsse, Perturbationen), **solange** die Ebene‑1‑Residuen invariant bleiben.
+
+**In Ebene 2 dürfen sich niemals ändern:**
+
+* die Primitive **e³** und **r**,
+* die Struktur der Klemmen (C_e, C_H, C_v, C_T),
+* die Grenzwerte (ε).
+
+**Zulässige Ebene‑2‑Fragen** betreffen ausschließlich:
+
+* wie sich ein Zustand **auf** dem Fixpunkt‑Graphen bewegt,
+* wie Perturbationen um den Fixpunkt aussehen,
+* ob reale Beobachtungen (CMB/BAO/LSS) **in der Nähe** des Fixpunkts liegen.
+
+**Unzulässig** sind alle Versuche, Ebene‑2‑Effekte zur Rechtfertigung oder Modifikation von Ebene 1 zu verwenden.
+
+---
+
 ## Reproduzieren
 
 1. Wähle **genau einen** Anker (Set A oder Set B).
