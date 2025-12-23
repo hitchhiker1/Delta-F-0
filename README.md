@@ -1,172 +1,283 @@
-# δℱ = 0 — Formale Modell-Architektur (Closure / Fixpunkt)
+# δℱ = 0 — Formale Modell-Architektur (Closure / Fixpunkt, Ebene 1)
 
-**Ein zwangsgeschlossenes Kosmosmodell**
-Keine freien Parameter. Eine konsistente Lösung.
+**Zwangsgeschlossenes Kosmosmodell.**
+**Genau ein Messanker. Keine weiteren Stellschrauben.**
+**Closure oder Verwerfung.**
+
 ---
-## Überblick (Scope)
 
-Dieses Repository beschreibt **Ebene 1**: eine **formale Modell‑Architektur** als *Constraint‑Satisfaction / Fixpunkt‑Problem*, prüfbar über Residuen (Killtests).
-Es ist **keine** vollständig ausgearbeitete Feldtheorie (Ebene 2: explizite Lagrangedichten, Symmetrien, Perturbationen, CMB/BAO/LSS‑Pipeline). Das ist ein bewusster Scope‑Schnitt.
+## Status & Scope
 
-> **Kernaussage:** Nach Wahl **eines** Messankers ist das System **überbestimmt**. Alle übrigen Größen müssen ohne weitere Freiheitsgrade schließen – oder das Modell fällt.
+Dieses Repository spezifiziert **Ebene 1**: ein **überbestimmtes Constraint‑Satisfaction / Fixpunkt‑Problem**, überprüfbar ausschließlich über **Residuen (Killtests)**.
+
+**Nicht enthalten (bewusster Scope‑Schnitt):** Ebene 2 (explizite Lagrangedichten, Symmetrien, Störungen, CMB/BAO/LSS‑Pipeline).
+
+> **Kernaussage:** Nach Wahl **genau eines** externen Messankers muss das System **ohne weitere Freiheitsgrade** schließen. Scheitert ein Residuum → **Modell verworfen**.
+
+### Epistemische Schranke (Scope‑Grenze)
+
+Dieses Dokument ist eine **axiomatische Closure‑Spezifikation**. Es beantwortet **nicht** die Frage, *warum* das Universum so ist, sondern prüft, *ob* eine festgelegte Closure **konsistent** ist.
+
+* **Primitive** (z.B. **e³** als Eich‑Fixpunkt, **r** als Drift‑Marker) werden **gesetzt**.
+* Für Primitive werden **keine Herleitungen** innerhalb von Ebene 1 gegeben oder akzeptiert.
+* Zulässig ist ausschließlich die Prüfung auf **Konsistenz** über die definierten Residuen.
+
+Fragen der Form *„Warum genau dieser Wert?“*, *„aus welcher Dynamik folgt das?“* oder *„welche tiefere Theorie erklärt das?“* sind **außerhalb des Scopes** (Ebene 2+) und **keine Einwände** gegen Ebene 1.
+
 ---
-## Idee in einem Satz
 
-> **Das Universum ist nicht gewählt – es ist die einzige Konfiguration, die sich selbst trägt.**
----
-## Zentrales Prinzip
+## Zentrales Prinzip (Closure)
 
 ```text
 δℱ = 0
 ```
 
-Meta‑Form eines Variationsprinzips mit Nebenbedingungen (Closure):
+Meta‑Form einer globalen Konsistenzbedingung:
 
 ```text
-δ[ S_EH + S_matter + S_scale + Σ λ_a · C_a ] = 0 ,   a ∈ {H, v, T, e}
+δ[ S_EH + S_matt + S_scale + Σ λ_a · C_a ] = 0 ,   a ∈ {H, v, T, e}
 ```
 
-**Hinweis:** Diese Schreibweise ist **keine** voll spezifizierte EFT‑Lagrangedichte, sondern eine **globale Konsistenzbedingung** (Fixpunkt/Closure).
----
-## Skalen‑Action (S_scale) — minimale Definition
+**Wichtig:** Das ist **keine** voll spezifizierte EFT‑Lagrangedichte, sondern eine **Fixpunkt‑Spezifikation**: Existenz, Eindeutigkeit, Residuen‑Prüfung.
 
-Für Ebene 1 genügt eine **skizzenhafte, wohldefinierte** Skalen‑Action als Funktional über ein Skalenmaß μ:
+---
+
+## Primitives, Einheiten, Verbotenes (damit nichts „hineinrutscht“)
+
+**Primitive (werden deklariert, nicht gefittet):**
+
+* **e³**: dimensionsloser **Eich‑Fixpunkt**.
+* **r**: dimensionsloser **Drift‑Marker** (kanonisch **r = 0.358524…**).
+* **Genau ein Messanker:** entweder **T₀** *oder* **λ_max**.
+
+**Einheiten (streng):**
+
+* **T₀** [K] Temperatur.
+* **u** [J/m³] Strahlungsenergiedichte.
+* **τ_lin, τ_eich** [s] Zeiten.
+* **⟨v⟩** [m/s] mittlerer Drift.
+
+**Nicht verhandelbar:**
+
+* **kein** Reweighting, **keine** Nachkalibrierung, **kein** „zweiter Anker“.
+* **keine** verdeckten Zusatzparameter (auch nicht als „nur numerische Konstante“).
+* jede Abweichung hiervon definiert **ein anderes Modell**.
+
+---
+
+## Skalen‑Action S_scale (Minimalform, eindeutig lösbar)
+
+Skalenmaß **μ(x) ≥ 0** auf **x ∈ [0,1]**:
 
 ```text
-S_scale[μ] = ∫₀¹ μ(x) · ln( μ(x) / m(x) ) dx
+S_scale[μ] = ∫₀¹ μ(x) · ln( μ(x) / m(x) ) dx ,   m(x)=1
 ```
 
-* μ(x) ≥ 0: Skalen‑Gewichtung (z. B. x = r/R ∈ [0,1])
-* m(x): Referenzmaß (z. B. m(x)=1)
+Regularisator (relative Entropie). Unter linearen Constraints ist die Lösung **eindeutig** (strikt konvex + linear).
 
-Diese Wahl ist ein **Regularisator** (relative Entropie): Unter linearen Nebenbedingungen existiert genau **eine** Lösung μ(x).
-
-### Drift‑Klemme als echte Nebenbedingung
+### Constraints für μ (Norm + Driftmoment)
 
 ```text
-C_v[μ] := ∫₀¹ x·μ(x) dx − r = 0
-C_N[μ] := ∫₀¹ μ(x) dx − 1 = 0
+C_N[μ] :  ∫₀¹ μ(x) dx − 1 = 0
+C_M[μ] :  ∫₀¹ x·μ(x) dx − r = 0
 ```
 
-Die Variation von S_scale unter C_v und C_N liefert eine eindeutige μ(x). Die Drift‑Klemme ist damit **nicht angeheftet**, sondern integraler Bestandteil des Variationsproblems.
----
-## Die vier Klemmen (Bedeutung)
-
-* **C_H (Geometrie):** Expansions‑Slot, R = c / H₀
-* **C_v (Drift):** normierter mittlerer Drift ⟨v⟩/c = r
-* **C_T (Thermik):** Strahlungsbudget (Planck/Wien‑Anker)
-* **C_e (Eichung):** Zeit‑Eichung über e³
-
-Diese Klemmen **definieren den zulässigen Lösungsraum**. Sie sind **keine Fit‑Parameter**.
-
-**Beispiel (symbolisch, als Nebenbedingung):**
+Variationslösung (explizit):
 
 ```text
-C_T := u − a·T^4 = 0
+μ*(x) = exp(λ₀ + λ₁ x)
 ```
 
-Die Klemme erzwingt thermische Konsistenz zwischen Strahlungsdichte *u* und Temperatur *T*. Sie ist hier als **Constraint** gemeint (Closure), nicht als eigenständige dynamische Feldgleichung.
+mit (λ₀, λ₁) eindeutig durch C_N und C_M bestimmt.
+
+**Interpretationsregel (hart):** μ ist **Repräsentation** eines Moments, nicht „Physik‑Profil“. Jede monotone 1‑Parameter‑Familie, die dasselbe Moment reproduziert, ist auf Ebene 1 äquivalent.
+
 ---
-## Set‑A / Set‑B (Ankerwahl)
 
-Ein **externer Messanker** ist erlaubt – **genau einer**:
+## Logische Reihenfolge der Closure (Architektur, nicht Dynamik)
 
-* **Set A:** λ_max (Wien‑Peak) als Anker → T₀ folgt
-* **Set B:** T₀ als Anker → λ_max folgt
+1. **Eichung zuerst:**
 
-> *„Keine freien Parameter“ heißt:* **Nach** der Ankerwahl existiert **keine zweite Stellschraube**.
+   ```text
+   C_e :  τ_eich − e³·τ_lin = 0
+   ```
 
-**Abgrenzung zu Fit:** Kein numerischer Wert wird durch Optimierung oder Anpassung gewonnen; nach Wahl eines einzigen Messankers werden alle übrigen Größen ausschließlich durch die Closure berechnet und über Residuen geprüft.
+   τ_lin ist die **primitive, skalenfreie Verweilzeit**. τ_eich ist die **geeichte kosmische Zeit**.
+
+2. **Drift ist ein Closure‑Moment (kein dynamischer Output):**
+
+   ```text
+   ⟨v⟩ := R / τ_eich
+   r := ⟨v⟩ / c
+   ```
+
+   **Bemerkung (entscheidend):** ⟨v⟩ ist hier **kein** aus Bewegungsgleichungen abgeleiteter Mittelwert, sondern der eindeutige geometrisch‑zeitliche Moment, der **R** und **τ_eich** kompatibel macht.
+
+3. **Gewichtung ist nur Darstellung:** μ(x) kodiert r als Moment (C_M). Die Wahl einer konkreten Darstellungsfamilie ist auf Ebene 1 **irrelevant**, solange das Moment erfüllt ist.
+
 ---
-## Zwangskette (Hintergrund‑Closure)
 
-1. R = c / H₀
-2. T_eich = R / ⟨v⟩
-3. T_lin = T_eich / e³
-4. u = a·T⁴  (Budget‑Schließung)
-5. T₀ = b / λ_max  (Wien‑Anker)
+## Die vier Klemmen (keine Fits)
 
-**Abhängigkeitsstruktur (Closure‑Graph):**
+### C_e — Eichung (Fixpunkt)
 
 ```text
-Anker (λ_max oder T₀)
-        ↓
-       T₀
-        ↓
-     T_lin
-        ↓
-     T_eich
-        ↓
-        R
-        ↓
-       H₀
-        ↓
-    {c, G, α, …}
+C_e :  τ_eich − e³·τ_lin = 0
 ```
 
-Weitere Konstanten (c, G, α, …) folgen **aus der Kette** – sie werden **nicht vorausgesetzt**.
+Eichbedingung. Fixiert Zeit **vor** Drift und Thermik.
+
+### C_H — Geometrie (Slot)
+
+```text
+C_H :  R − c/H₀ = 0
+```
+
+### C_v — Drift (Moment)
+
+```text
+C_v :  ⟨v⟩/c − r = 0
+```
+
+Definition des Moments (kanonisch):
+
+* x := v/c ∈ [0,1]
+* r = ∫₀¹ x·μ(x) dx / ∫₀¹ μ(x) dx  (mit ∫ μ = 1)
+
+### C_T — Thermik / Budget (Einheitenbrücke)
+
+Thermischer Anker (Planck/Wien):
+
+```text
+C_T1 :  u − a·T₀⁴ = 0
+```
+
+Budget‑Closure (stationärer Durchsatz):
+
+```text
+C_T2 :  u − (\dot{ρ}·τ_lin)/4 = 0
+\dot{ρ} ≡ 4u/τ_lin
+```
+
+**Interpretationsregel (hart):** \dot{ρ} ist **definiert** als stationärer Durchsatz, der u über τ_lin trägt. **Kein** Friedmann‑Term, **keine** Dynamikbehauptung auf Ebene 1.
 
 ---
 
-## Killtests (harte Kriterien)
+## Ankerwahl (genau einer)
 
-ε ist **fest**; kein Reweighting, keine Nachkalibrierung.
+Erlaubt ist **genau ein** externer Messanker:
 
-| Code | Test             | Kriterium            |
-| ---- | ---------------- | -------------------- |
-| K1   | Strahlungsbudget | u schließt           |
-| K2   | Temperaturanker  | T₀ = b/λ_max         |
-| K3   | Zeit‑Eichung     | T_eich = e³·T_lin    |
-| K4   | Drift            | ⟨v⟩/c = r            |
-| K5   | G‑Konsistenz     | aus Kette ≈ gemessen |
-| K6   | Skaleninvarianz  | Stabil unter e³      |
+* **Set A:** λ_max → T₀ folgt
+* **Set B:** T₀ → λ_max folgt
 
-Versagt ein Test → **Modell verworfen**.
----
-## Ergebnisse (Beispiel‑Set)
+Wien‑Relation (Definition):
 
-* H₀ ≈ 72.28 km/s/Mpc
-* T₀ ≈ 2.7255 K
-* u ≈ 4.17×10⁻¹⁴ J/m³
-* c ≈ 2.99792458×10⁸ m/s (emergent)
-* G ≈ 6.67×10⁻¹¹ m³·kg⁻¹·s⁻²
-* α⁻¹ ≈ 137.036
----
-## Der mittlere Drift (Definition & Check)
+```text
+T₀ · λ_max = b
+```
 
-⟨v⟩/c = ∫₀¹ x·xⁿ dx / ∫₀¹ xⁿ dx = (n+1)/(n+2)
-*(Konvergenz: n > −1)*
+b ist das feste Wien‑Produkt (aus dem Planck‑Spektrum), **nicht** optimiert.
 
-**Drift‑Klemme:** r := ⟨v⟩/c ≈ 0.358524
-
-**Mini‑Check:**
-
-* r = (n+1)/(n+2) = 0.559/1.559 ≈ 0.358524
-* n = (2r−1)/(1−r) ≈ −0.441
----
-## Einordnung & Ausblick
-
-* Dies ist **Hintergrund‑Closure** (Ebene 1).
-* **Perturbationen / Strukturbildung** (CMB/BAO/LSS) sind **separat** auszuarbeiten (Ebene 2).
-
-**Ausblick (Ebene 2, optional):**
-
-* Einführung einer skalenabhängigen Störgröße δk(x,t)
-* Linearisierung der Closure‑Bedingungen um den Fixpunkt
-* Ableitung effektiver Perturbationsgleichungen (CMB/BAO/LSS)
----
-## Reproduzieren (Kurz)
-
-1. Wähle **einen** Anker (Set A oder B).
-2. Durchlaufe die Zwangskette.
-3. Prüfe Killtests K1–K6.
-4. Bestehen alle → Closure erfüllt.
----
-## Aufforderung
-
-Finde eine **alternative** Wertekombination, die **alle** Killtests besteht.
-Gelingt das nicht, ist die Closure eindeutig – oder der Ansatz widerlegt.
 ---
 
-**Autor:** Thomas Boffo - Frankfurt
+## Zwangskette (dimensionssauber, ohne „Temperatur‑Zeit‑Verwechslung“)
+
+1. Eichung:
+
+```text
+τ_eich = e³ · τ_lin
+```
+
+2. Thermik:
+
+```text
+u = a·T₀⁴
+```
+
+3. Budget:
+
+```text
+\dot{ρ} = 4u / τ_lin
+```
+
+4. Driftmoment:
+
+```text
+⟨v⟩ = R / τ_eich
+r = ⟨v⟩ / c
+```
+
+5. Geometrie‑Slot:
+
+```text
+R = c / H₀
+```
+
+**Hinweis zur Fixpunkt‑Struktur (kein „Zirkel“):** Die Gleichungen bilden einen **gleichzeitigen Closure‑Graphen** (Fixpunkt), keinen sequentiellen Rechenpfad. Ein „Zirkel“ entsteht nur, wenn man Ebene 1 fälschlich als Algorithmus liest. Numerische Werte sind nur dann zulässig, wenn **alle** Klemmen und Residuen **gleichzeitig** geschlossen werden (z.B. per reproduzierbarem Code).
+
+---
+
+## Killtests (Residuen fest; ε global; kein Trade‑off)
+
+ε ist **einmal** festgelegt. Keine Nachkalibrierung. Keine Gewichtungs‑Tricks.
+
+Definiere Residuen:
+
+```text
+ε_budg = | u / (\dot{ρ}·τ_lin/4) − 1 |
+ε_peak = | (T₀·λ_max)/b − 1 |
+ε_e    = | τ_eich/(e³·τ_lin) − 1 |
+ε_v    = | ⟨v⟩/c − r |
+```
+
+Grenzen (kanonisch):
+
+```text
+ε_budg ≤ 1e−3
+ε_peak ≤ 1e−6
+ε_e    ≤ 1e−12
+ε_v    ≤ 1e−6
+```
+
+**Regel:** Ein einziges Residuum über Grenzwert → **Modell verworfen**.
+
+Optional (nur wenn im Repo explizit belegt):
+
+* K5: G‑Konsistenz (Brückenformel vorhanden)
+* K6: e³‑Stabilität (Residuen invariant unter τ‑Reskalierung + definierter \dot{ρ}‑Transformation)
+
+---
+
+## Ergebnisse (Beispiel‑Set; nur als Referenz, nicht als Fit)
+
+```text
+H₀ ≈ 72.28 km/s/Mpc
+T₀ ≈ 2.7255 K
+u  ≈ 4.17×10⁻¹⁴ J/m³
+c  ≈ 2.99792458×10⁸ m/s (Kandidat; nur gültig, wenn Brücke geschlossen)
+G  ≈ 6.67×10⁻¹¹ m³·kg⁻¹·s⁻² (optional; nur mit Brücke)
+α⁻¹ ≈ 137.036 (optional; nur mit Brücke)
+```
+
+Walkthrough / Code: siehe Notebook/Script (muss die Residuen reproduzierbar ausweisen).
+
+---
+
+## Reproduzieren
+
+1. Wähle **genau einen** Anker (Set A oder Set B).
+2. Setze **e³** und **r** (kanonisch r = 0.358524…).
+3. Durchlaufe die Zwangskette.
+4. Prüfe **alle** Residuen gegen ε.
+
+---
+
+## Challenge (Falsifikation / Eindeutigkeit)
+
+Finde eine **alternative** Wertekombination bei fixem **e³** und fixem **r**, die **alle** Residuen unter denselben ε‑Grenzen hält.
+Gelingt das nicht, ist die Closure entweder **eindeutig** – oder durch Daten **widerlegt**.
+
+---
+
+**Autor:** Thomas Boffo – Frankfurt
 **Lizenz:** CC BY‑NC‑SA 4.0
