@@ -754,5 +754,6 @@ Diese Checkliste ist **bindend** für jede automatische Implementierung.
 * „c wird postuliert“ → falsch (c ist Konsistenzgröße).
 
 ---
+© 2025 Thomas Boffo. Nicht-kommerzielle Nutzung, Weitergabe und Änderung mit Namensnennung erlaubt; kommerzielle Nutzung, Re-Branding oder proprietäre Einbindung ohne ausdrückliche Genehmigung untersagt. Keine Gewährleistung.
 
 **Ende README**
