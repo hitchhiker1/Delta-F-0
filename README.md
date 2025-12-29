@@ -296,6 +296,14 @@ I := e³ · r · H₀ · τ_lin
 Erwartung: `I = 1`.
 Abweichung bedeutet **Implementations‑ oder Reportingfehler**, nicht neue Physik.
 
+Meta-Klarstellung (Entdeckungspfad vs. Spezifikation):
+
+Historisch wurde der heute verwendete Referenzpunkt (z.B. T₀ bzw. λ_max) durch numerische Scan-/Filterverfahren identifiziert, um einen konsistenten Fixpunkt zu lokalisieren. Dieser Schritt gehört zum Entdeckungs- bzw. Kalibrationspfad und ist kein Bestandteil der Ebene-1-Spezifikation.
+
+In Ebene 1 wird genau ein Messanker direkt gesetzt (Set A oder Set B); das jeweils komplementäre Gegenstück folgt deterministisch über das Wiensche Gesetz. Es existiert innerhalb der Ebene-1-Closure kein zusätzlicher Freiheitsgrad, keine iterative Anpassung und kein Fit.
+
+Numerische Iteration ist ausschließlich als technische Methode zur Residuen-Minimierung erlaubt und besitzt keinerlei physikalische oder epistemische Bedeutung innerhalb der Closure.
+
 ---
 
 ## 8. Abgeleitete Identität (informativ)
